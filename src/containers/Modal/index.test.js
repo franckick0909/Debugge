@@ -40,7 +40,7 @@ describe("When Modal data is created", () => {
         </Modal>
       );
 
-      expect(screen.getByText("modal content")).toBeInTheDocument();
+      expect(screen.getByText("modal content")).toBeInTheDocument(); // on s'assure que le contenu du modal est affiché
       fireEvent(
         screen.getByTestId("close-modal"),
         new MouseEvent("click", {

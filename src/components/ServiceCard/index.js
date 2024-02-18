@@ -12,13 +12,15 @@ const ServiceCard = ({ imageSrc, imageAlt, children }) => (
   );
 
 ServiceCard.propTypes = {
-  imageSrc: PropTypes.string.isRequired,
-  imageAlt: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  imageSrc: PropTypes.string,
+  imageAlt: PropTypes.string, 
+  children: PropTypes.node,  
 };
 
 ServiceCard.defaultProps = {
-  imageAlt: "image"
+  imageAlt: "", 
+  imageSrc: "",  
+  children: null,
 }
 
 export default ServiceCard;

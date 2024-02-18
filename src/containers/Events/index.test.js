@@ -7,7 +7,7 @@ const data = {
     {
       id: 1,
       type: "soirée entreprise",
-      date: "2022-04-29T20:28:45.744Z",
+      date: "2022-04-29T20:28:45.744Z", // date de l'événement = 29 avril
       title: "Conférence #productCON",
       cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
       description:
@@ -25,7 +25,7 @@ const data = {
     {
       id: 2,
       type: "forum",
-      date: "2022-04-29T20:28:45.744Z",
+      date: "2022-04-29T20:28:45.744Z", // date de l'événement = 29 avril
       title: "Forum #productCON",
       cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
       description:
@@ -37,53 +37,53 @@ const data = {
   ],
 };
 
-describe("When Events is created", () => {
-  it("a list of event card is displayed", async () => {
-    api.loadData = jest.fn().mockReturnValue(data);
-    render(
+describe("When Events is created", () => {   // quand Events est créé 
+  it("a list of event card is displayed", async () => {  // une liste de carte d'événement est affichée 
+    api.loadData = jest.fn().mockReturnValue(data);  // on mock les données 
+    render(  
       <DataProvider>
         <Events />
       </DataProvider>
     );
-    await screen.findByText("avril");
+    await screen.findByText("avril"); // on s'assure que le mois d'avril soit affiché 
   });
-  describe("and an error occured", () => {
-    it("an error message is displayed", async () => {
-      api.loadData = jest.fn().mockRejectedValue();
+  describe("and an error occured", () => {  // si une erreur est survenue 
+    it("an error message is displayed", async () => {  // un message d'erreur est affiché
+      api.loadData = jest.fn().mockRejectedValue();  // on mock une erreur
       render(
         <DataProvider>
           <Events />
         </DataProvider>
       );
-      expect(await screen.findByText("An error occured")).toBeInTheDocument();
+      expect(await screen.findByText("An error occured")).toBeInTheDocument();  // on s'assure que le message d'erreur est affiché 
     });
   });
-  describe("and we select a category", () => {
-    it.only("an filtered list is displayed", async () => {
-      api.loadData = jest.fn().mockReturnValue(data);
+  describe("and we select a category", () => {  // on sélectionne une catégorie 
+    it.only("an filtered list is displayed", async () => {  // une liste filtrée est affichée
+      api.loadData = jest.fn().mockReturnValue(data);  // on mock les données
       render(
         <DataProvider>
           <Events />
         </DataProvider>
       );
-      await screen.findByText("Forum #productCON");
+      await screen.findByText("Forum #productCON");  // on s'assure que le forum est affiché
       fireEvent(
-        await screen.findByTestId("collapse-button-testid"),
-        new MouseEvent("click", {
+        await screen.findByTestId("collapse-button-testid"),  // on clique sur le bouton collapse
+        new MouseEvent("click", {   // on simule un click
           cancelable: true,
           bubbles: true,
         })
       );
       fireEvent(
-        (await screen.findAllByText("soirée entreprise"))[0],
+        (await screen.findAllByText("soirée entreprise"))[0],  // on clique sur le premier élément de la liste
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
         })
       );
 
-      await screen.findByText("Conférence #productCON");
-      expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
+      await screen.findByText("Conférence #productCON");  // on s'assure que la conférence est affichée 
+      expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();  // on s'assure que le forum n'est pas affiché
     });
   });
 

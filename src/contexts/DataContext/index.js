@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 import {
   createContext,
   useCallback,
@@ -46,7 +47,7 @@ export const DataProvider = ({ children }) => {
 
 DataProvider.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export const useData = () => useContext(DataContext);
 
