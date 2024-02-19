@@ -14,9 +14,9 @@ const Slider = () => {
   
 
 
-  const nextCard = () => {         // fonction pour passer à la slide suivante
-    if (byDateDesc) {              // si byDateDesc existe 
-      setTimeout(() => {          // setTimeout pour changer de slide toutes les 5 secondes
+  const nextCard = () => {      // fonction pour passer à la slide suivante
+    if (byDateDesc) {           // si byDateDesc existe 
+      setTimeout(() => {        // setTimeout pour changer de slide toutes les 5 secondes
         setIndex((index + 1) % byDateDesc.length);  // change l'index de la slide + 1 module la longueur de byDateDesc pour revenir à 0 si l'index dépasse la longueur de byDateDesc 
       }, 5000);
     }

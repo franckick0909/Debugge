@@ -29,19 +29,17 @@ const EventCard = ({
 );
 
 EventCard.propTypes = {
-  imageSrc: PropTypes.string,
+  imageSrc: PropTypes.string.isRequired,
   imageAlt: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   small: PropTypes.bool,
 };
 
 EventCard.defaultProps = {
   small: false,
-  imageAlt: "image",
-  imageSrc: "",
-  title: "",
+  imageAlt: "image",           
 };
 
 export default EventCard;

@@ -1,5 +1,5 @@
 export const MONTHS = {
-  0: "janvier",
+  0: "janvier",    // mois de l'année de 0 à 11 pour correspondre à l'index des mois dans le tableau
   1: "février",
   2: "mars",
   3: "avril",
