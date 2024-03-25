@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "./index";
 
-describe("When Events is created", () => {  // quand Events est créé
-  it("a list of event card is displayed", async () => {  // une liste de carte d'événement est affichée
+describe("When Events is created", () => {  // quand un evenement est créé
+  it("a list of event card is displayed", async () => {
+// test et vérifie si les libellés ("Email", "Nom", "Prénom", "etc..") sont présents, indiquant que le formulaire est affiché correctement.
     render(<Form />);
     await screen.findByText("Email");
     await screen.findByText("Nom");
@@ -11,9 +12,10 @@ describe("When Events is created", () => {  // quand Events est créé
   });
 
   describe("and a click is triggered on the submit button", () => {
+// test le comportement du formulaire lors de la soumission.
     it("the success action is called", async () => {
-      const onSuccess = jest.fn();
-      render(<Form onSuccess={onSuccess} />);  // on simule un click sur le bouton submit
+      const onSuccess = jest.fn();  // on crée une fonction jest.fn pour simuler une action de succès (qui ne s'y trouve pas encore...)
+      render(<Form onSuccess={onSuccess} />); // on simule un click sur le bouton submit
       fireEvent(
         await screen.findByTestId("button-test-id"),
         new MouseEvent("click", {

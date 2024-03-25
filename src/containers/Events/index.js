@@ -14,11 +14,12 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);  
   const filteredEvents = ((!type ? data?.events : data?.events) || [])
     .filter(
-      (event) =>
-        (type ? event.type === type : true) && new Date(event.date) < new Date()) 
-    // Vérifie si le type de l'événement correspond à celui sélectionné et si la date de l'événement est passée
-    // Si le type n'est pas sélectionné, tous les événements sont affichés
-    // Si les deux conditions sont remplies, l'événement est affiché -->  renvoie true 
+      // Rajout de la function filter, pour filtrer les événements en fonction du type sélectionné et de la date de l'événement
+      (event) =>  // Si le type est sélectionné, seuls les événements de ce type sont affichés
+        (type ? event.type === type : true) && new Date(event.date) < new Date()
+      // Si event.type est égal à type, on affiche l'événement, sinon on affiche tous les événements et on filtre par date de l'événement, si la date de l'événement est inférieure à la date actuelle, on affiche l'événement sinon on ne l'affiche pas.
+    )
+
     .filter((event, index) => {
       if (
         (currentPage - 1) * PER_PAGE <= index &&

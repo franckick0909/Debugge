@@ -13,17 +13,17 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  // importe le hook useData du contexte DataContext
+  // importe le hook useData
   const { data } = useData();
   // récupère les données de l'événement le plus récent
   const last = data?.focus?.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   )[0];
 
-  // --->  data?.focus?.sort((evtA, evtB) Chainage optionnel pour éviter les erreurs si data ou focus est null
-  // à partir du .sort, on trie les événements par date
-  // --->  [0] Récupère le premier élément du tableau
-// Si evtA est inféririeur à evtB, elle retourne -1 (du coup evtA est placée avant evtB), sinon elle retourne 1 (du coup evtB est placée avant evtA)
+//  data?.focus?.sort((evtA, evtB) opérateur de Chainage optionnel (?.), pour éviter les erreurs si data ou   focus est null.
+//  à partir du .sort, on TRIE les événements par date.
+//  [0] Récupère le premier élément du tableau trié.
+//  Si evtA est inféririeur à evtB, elle retourne -1 pour, sinon elle retourne 1. 
   return (
     <>
       <header>
@@ -123,12 +123,11 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre derniére prestation</h3>
-          <EventCard
-            // imageSrc={last?.cover}
-            imageSrc={last?.cover !== undefined ? last.cover : ""}
-            title={last?.title !== undefined ? last.title : ""}
+          <EventCard                                 // Condition ternaire pour afficher le dernier événement
+            imageSrc={last?.cover ? last.cover : ""} // si last.cover existe, on affiche last.cover, sinon on affiche rien.
+            title={last?.title ? last.title : ""}  // si last.title existe, on affiche last.title, sinon on affiche rien.
             date={new Date(last?.date)}
-            small
+            small={last?.small ? last.small : false} // si last.small existe, on affiche last.small, sinon on affiche false.
             label="boom"
           />
         </div>

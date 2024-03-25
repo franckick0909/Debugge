@@ -15,11 +15,12 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        onSuccess(); // <---- Rajout de la fonction onSuccess, pour que le message soit envoyé avec succès.
-      } catch (err) {
+        onSuccess(); // <---- Rajout de la fonction onSuccess, pour que le message soit envoyé avec succès
+      } catch (err) {      // sinon rien ne se passe
         setSending(false);
         onError(err);
-      }
+      }   // Lors du click du button submit, on appelle la fonction sendContact qui envoie une requête à l'API,
+          // si la requête est un succès, on appelle la fonction onSuccess, sinon on appelle la fonction onError.
     },
     [onSuccess, onError]
   );
